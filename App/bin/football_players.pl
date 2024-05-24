@@ -8,5 +8,5 @@ player_position('Van Dijk', 'Defender').
 player_position('Sergio Ramos', 'Defender').
 player_position('Chiellini', 'Defender').
 
-player_at_position(Position, Players) :-
-findAll(Player, player_position(Player,Position), Players).
+players_at_position(Position, Players) :-
+findall(Player, player_position(Player,Position), Players).
