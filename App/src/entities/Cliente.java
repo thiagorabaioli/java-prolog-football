@@ -3,7 +3,7 @@ package entities;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Customer {
+public class Cliente {
 
     private Integer id;
 	private String nome;
@@ -12,9 +12,9 @@ public class Customer {
     private Integer anosLealdade;
     private List<Cart> carts = new ArrayList<>();
 
-    public Customer() {}
+    public Cliente() {}
 
-	public Customer(Integer id, String nome, String cidade, String distrito, Integer anosLealdade) {
+	public Cliente(Integer id, String nome, String cidade, String distrito, Integer anosLealdade) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -92,7 +92,7 @@ public class Customer {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        Customer other = (Customer) obj;
+        Cliente other = (Cliente) obj;
         if (id == null) {
             if (other.id != null)
                 return false;

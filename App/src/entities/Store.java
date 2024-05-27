@@ -6,7 +6,7 @@ public class Store {
 
     private Integer id;
     private String nome;
-    private ArrayList<Customer> clientes = new ArrayList<Customer>();
+    private ArrayList<Cliente> clientes = new ArrayList<Cliente>();
 
       public Store() {}
 
@@ -32,11 +32,11 @@ public class Store {
           this.nome = nome;
       }
 
-      public ArrayList<Customer> getClientes() {
+      public ArrayList<Cliente> getClientes() {
           return clientes;
       }
 
-      public void setClientes(ArrayList<Customer> clientes) {
+      public void setClientes(ArrayList<Cliente> clientes) {
           this.clientes = clientes;
       }
 

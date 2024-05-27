@@ -19,9 +19,21 @@ loyalty_discount(2, 0.1).
 loyalty_discount(3, 0.15).
 loyalty_discount(4, 0.2).
 loyalty_discount(5, 0.25).
-loyalty_discount(>5, 0.3).
+loyalty_discount(6, 0.3).
 
 % Custos de envio por distrito
 shipping_cost('Aveiro', 5.0).
 shipping_cost('Lisboa', 7.0).
 shipping_cost('Porto', 10.0).
+
+% Clientes
+cliente_store(1,'Alice', 'Aveiro', 3).
+cliente_store(2,'Beatriz', 'Braga', 1).
+cliente_store(3,'Carlos', 'Coimbra', 2).
+cliente_store(4,'Diogo', 'Lisboa', 4).
+cliente_store(5,'Eva', 'Porto', 1).
+cliente_store(6,'Francisca', 'Faro', 3).
+cliente_store(7,'Guilhermina', 'Viseu', 5).
+
+items_at_position(Position, Items) :-
+findall(Item, item_position(Item,Position), Items).

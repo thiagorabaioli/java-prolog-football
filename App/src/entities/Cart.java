@@ -4,12 +4,12 @@ import java.util.ArrayList;
 
 public class Cart {
      private Integer id;
-	  private Customer cliente;
+	  private Cliente cliente;
 	  private ArrayList<Item> items = new ArrayList<Item>();
 
       public Cart() {}
 	  
-	  public Cart(Integer id, Customer cliente) {
+	  public Cart(Integer id, Cliente cliente) {
 		super();
 		this.id = id;
 		this.cliente = cliente;
@@ -23,11 +23,11 @@ public class Cart {
 		this.id = id;
 	}
 
-	public Customer getCliente() {
+	public Cliente getCliente() {
 		return cliente;
 	}
 
-	public void setCliente(Customer cliente) {
+	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
 
