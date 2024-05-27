@@ -76,27 +76,13 @@ shipping_cost('Faro', 15).
 shipping_cost('Viseu', 3).
 
 % Clientes
-cliente_store(1,'Alice', 'Aveiro', 3).
-cliente_store(2,'Beatriz', 'Braga', 1).
-cliente_store(3,'Carlos', 'Coimbra', 2).
-cliente_store(4,'Diogo', 'Lisboa', 4).
-cliente_store(5,'Eva', 'Porto', 1).
-cliente_store(6,'Francisca', 'Faro', 3).
-cliente_store(7,'Guilhermina', 'Viseu', 5).
-
-/* purchases history
- Id clientes, Data, Valor (SD) Desconto categoria, Desconto lealdade, Custo envio, total */
-compra(1, '20/05/2024', 50, 5, 0, 5, 50).
-compra(2, '21/05/2024', 30, 3, 1, 3, 29).
-compra(3, '22/05/2024', 40, 4, 0, 4, 40).
-compra(4, '23/05/2024', 60, 6, 2.5, 6, 57.5).
-compra(5, '23/05/2024', 25, 2.5, 0, 2.5, 25).
-compra(6, '25/05/2024', 35, 3.5, 2, 3.5, 33).
-compra(7, '26/05/2024', 75, 7.5, 0, 7.5, 75).
-compra(3, '27/05/2024', 45, 4.5, 0, 4.5, 45).
-compra(4, '28/05/2024', 55, 5.5, 10, 5, 44.5).
-compra(1, '28/05/2024', 60, 6, 0, 6, 60).
+cliente_store(1,'Alice','Aveiro',3).
+cliente_store(2,'Beatriz','Braga',1).
+cliente_store(3,'Carlos','Coimbra',2).
+cliente_store(4,'Diogo','Lisboa',4).
+cliente_store(5,'Eva','Porto',1).
+cliente_store(6,'Francisca','Faro',3).
+cliente_store(7,'Guilhermina','Viseu',5).
 
 
 
-cliente_store(37, 'Thiago R', 'Loures', 3).

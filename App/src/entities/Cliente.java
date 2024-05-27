@@ -7,18 +7,16 @@ public class Cliente {
 
     private Integer id;
 	private String nome;
-    private String cidade;
     private String distrito;
     private Integer anosLealdade;
     private List<Cart> carts = new ArrayList<>();
 
     public Cliente() {}
 
-	public Cliente(Integer id, String nome, String cidade, String distrito, Integer anosLealdade) {
+	public Cliente(Integer id, String nome, String distrito, Integer anosLealdade) {
 		super();
 		this.id = id;
 		this.nome = nome;
-		this.cidade = cidade;
 		this.distrito = distrito;
 		this.anosLealdade = anosLealdade;
 	
@@ -40,13 +38,6 @@ public class Cliente {
 		this.nome = nome;
 	}
 
-	public String getCidade() {
-		return cidade;
-	}
-
-	public void setCidade(String cidade) {
-		this.cidade = cidade;
-	}
 
 	public String getDistrito() {
 		return distrito;
@@ -101,11 +92,15 @@ public class Cliente {
         return true;
     }
 
-    @Override
-	public String toString() {
-		return "Cliente [id=" + id + ", nome=" + nome + "]";
-	}
-
+	@Override
+    public String toString() {
+        return "Cliente{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", distrito='" + distrito + '\'' +
+                ", anosLealdade=" + anosLealdade +
+                '}';
+    }
 
 
 	
