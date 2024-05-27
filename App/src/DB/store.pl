@@ -1,3 +1,38 @@
+items_at_position(Position, Items) :-
+findall(Item, item_position(Item,Position), Items).
+
+
+
+% Predicado para buscar todos os clientes
+ todos_clientes(Clientes) :-
+    findall((Id, Name, Location, Years), cliente_store(Id, Name, Location, Years), Clientes).
+
+% Predicado dinâmico para armazenar clientes
+:- dynamic(cliente_store/4).
+
+% Regra para adicionar um novo cliente ao banco de dados
+adicionar_cliente(Id, Nome, Localizacao, Anos) :-
+    assertz(cliente_store(Id, Nome, Localizacao, Anos)),
+    salvar_cliente(Id, Nome, Localizacao, Anos).
+
+% Regra para salvar um novo cliente no arquivo store.pl
+salvar_cliente(Id, Nome, Localizacao, Anos) :-
+    open('src/DB/store.pl', append, Stream),
+    write(Stream, 'cliente_store('),
+    write(Stream, Id),
+    write(Stream, ', \''),
+    write(Stream, Nome),
+    write(Stream, '\', \''),
+    write(Stream, Localizacao),
+    write(Stream, '\', '),
+    write(Stream, Anos),
+    write(Stream, ').\n'),
+    close(Stream).
+
+
+
+
+
 % Item em inventário
 item(1, 'Potion of Healing', 'potions', 10.0, 50).
 item(2, 'Wand of Fireball', 'wands', 20.0, 30).
@@ -62,5 +97,6 @@ compra(3, '27/05/2024', 45, 4.5, 0, 4.5, 45).
 compra(4, '28/05/2024', 55, 5.5, 10, 5, 44.5).
 compra(1, '28/05/2024', 60, 6, 0, 6, 60).
 
-items_at_position(Position, Items) :-
-findall(Item, item_position(Item,Position), Items).
+
+
+cliente_store(37, 'Thiago R', 'Loures', 3).
