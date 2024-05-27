@@ -1,5 +1,8 @@
 
 import org.jpl7.*;
+
+import Reader.FileReader;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -21,55 +24,15 @@ import java.util.Map;
 
 public class App {
 
+   
+
 
     public static void main(String[] args) throws Exception {
 
-         List<Cliente> clientes = new ArrayList<>();
+        List<Cliente> cli = FileReader.loadClientesFromFile("src/DB/store.pl");
+        System.out.println(cli);
+    
 
-         try {
-            File file = new File("src/DB/store.pl");
-            Scanner scanner = new Scanner(file);
-
-            while (scanner.hasNextLine()) {
-                String line = scanner.nextLine().trim();
-            
-                // Verifica se a linha contém um cliente
-                if (line.startsWith("cliente_store")) {
-                    // Extrai os dados da linha
-                    String[] parts = line.split("[(),']+");
-            
-                    // Verifica se o número de partes está correto
-                    if (parts.length >= 4) {
-                        try {
-                            Integer id = Integer.parseInt(parts[1]);
-                            String nome = parts[2];
-                            String distrito = parts[3];
-                            Integer anosLealdade = Integer.parseInt(parts[4]);
-            
-                            // Cria um objeto Cliente e adiciona à lista
-                            Cliente cliente = new Cliente(id, nome, distrito, anosLealdade);
-                            clientes.add(cliente);
-                        } catch (NumberFormatException e) {
-                            // Trata o caso em que a conversão para Integer falha
-                            System.out.println("Erro ao converter para Integer: " + e.getMessage());
-                        }
-                    } else {
-                        System.out.println("Formato inválido da linha: " + line);
-                    }
-                }
-            }
-            scanner.close();
-        } catch (FileNotFoundException e) {
-            System.out.println("Erro: Arquivo não encontrado.");
-            e.printStackTrace();
-        }
-
-        // Exibe os clientes
-        for (Cliente cliente : clientes) {
-            System.out.println(cliente);
-        }
-
-        
         Query q1 = new Query(
             "consult",
             new Term[] {new Atom("src/DB/store.pl")}

@@ -3,6 +3,7 @@ package entities;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class Cliente {
 
     private Integer id;
@@ -103,6 +104,4 @@ public class Cliente {
     }
 
 
-	
-    
 }
