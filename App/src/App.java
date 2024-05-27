@@ -32,7 +32,7 @@ public class App {
 
     public static void main(String[] args) throws Exception {
 
-        menuPrincipal(true);
+     //   menuPrincipal(true);
        
 
     Query q1 = new Query(
@@ -40,7 +40,7 @@ public class App {
         new Term[] {new Atom("src/DB/store.pl")}
         );
 
-       // System.out.println( "consult " + (q1.hasSolution() ? "succeeded" : "failed"));
+        System.out.println( "consult " + (q1.hasSolution() ? "succeeded" : "failed"));
        q1.hasMoreSolutions();
 
 
