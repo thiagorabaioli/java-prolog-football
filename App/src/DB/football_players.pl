@@ -10,3 +10,7 @@ player_position('Chiellini', 'Defender').
 
 players_at_position(Position, Players) :-
 findall(Player, player_position(Player,Position), Players).
+
+% Predicado para buscar todos os jogadores
+todos_jogadores(Jogadores) :-
+    findall(Jogador, player_position(Jogador, _), Jogadores).
