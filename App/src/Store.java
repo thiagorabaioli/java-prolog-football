@@ -3,7 +3,6 @@ import org.jpl7.*;
 
 
 import Reader.FileReader;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import entities.Cart;
@@ -20,8 +19,8 @@ public class Store {
 
           menuPrincipal(true);
 
-        List<Cliente> cli = FileReader.loadClientesFromFile("src/DB/store.pl");
-        List<Item> items = FileReader.loadItemsFromFile("src/DB/store.pl");
+        List<Cliente> cli = FileReader.loadClientesFromFile("/home/ubuntu/LP/efolioB/java-prolog-football/App/src/DB/store.pl");
+        List<Item> items = FileReader.loadItemsFromFile("/home/ubuntu/LP/efolioB/java-prolog-football/App/src/DB/store.pl");
 
         System.out.println(cli);
 
@@ -114,7 +113,7 @@ public class Store {
             switch (opcao) {
                 case 1:
                 // Instanciar PrologIntegration com o caminho do arquivo store.pl
-              FileReader fileReader = new FileReader("src/DB/store.pl");
+              FileReader fileReader = new FileReader("/home/ubuntu/LP/efolioB/java-prolog-football/App/src/DB/store.pl");
 
                 // Exemplo de consulta para obter todos os clientes
                 Query consultaClientes = fileReader.obterConsulta("todos_clientes(Clientes)");

@@ -15,7 +15,7 @@ adicionar_cliente(Id, Nome, Localizacao, Anos) :-
 
 % Regra para salvar um novo cliente no arquivo store.pl
 salvar_cliente(Id, Nome, Localizacao, Anos) :-
-    open('src/DB/store.pl', append, Stream),
+    open('/home/ubuntu/LP/efolioB/java-prolog-football/App/src/DB/store.pl', append, Stream),
     write(Stream, 'cliente_store('),
     write(Stream, Id),
     write(Stream, ', \''),
@@ -96,3 +96,4 @@ histórico_de_compras(4,'28/05/2024',55,5.5,10,5,44.5).
 histórico_de_compras(1,'28/05/2024',60,6,0,6,60).
 
 cliente_store(25, 'Thiago', 'Loures', 5).
+cliente_store(27, 'ThiagoRRRR', 'Loures', 7).

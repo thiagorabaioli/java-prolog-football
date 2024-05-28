@@ -20,7 +20,7 @@ import entities.Item;
 
 public class FileReader {
 
-    private static final String FILE_PATH = "src/DB/store.pl";
+    private static final String FILE_PATH = "/home/ubuntu/LP/efolioB/java-prolog-football/App/src/DB/store.pl";
 
       private Query connectionQuery;
 
@@ -97,18 +97,6 @@ public class FileReader {
     }
 
   
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     public static List<Item> loadItemsFromFile(String filePath) {
