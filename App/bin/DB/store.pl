@@ -1,8 +1,6 @@
 items_at_position(Position, Items) :-
 findall(Item, item_position(Item,Position), Items).
 
-
-
 % Predicado para buscar todos os clientes
  todos_clientes(Clientes) :-
     findall((Id, Name, Location, Years), cliente_store(Id, Name, Location, Years), Clientes).
@@ -33,19 +31,19 @@ salvar_cliente(Id, Nome, Localizacao, Anos) :-
 
 
 
-% Item em inventário
-item(1,'Potion of Healing','potions',10.0,50).
-item(2,'Wand of Fireball','wands',20.0,30).
-item(3,'Enchanted Spellbook','enchanted_books',30.0,20).
-item(4,'Crystal of Clairvoyance','crystals',15.0,40).
-item(5,'Amulet of Protection','amulets',25.0,25).
-item(6,'Standard Wand ','wands', 20.0,100).
-item(7,'Love Potion','potions',10.0,50).
-item(8,'Advanced Spellbook','enchanted Books',15,30).
-item(9,'Crystal of Magic Vision','crystals',30.0,20).
-item(10,'Flying Broomstick ','accessories',50.0,10).
-item(11,' Enchanted Scroll','scrolls',8.0,50).
-item(12,'Fairy Dust ','ingredients',5.0,100).
+% Item em inventário IDitem Nome Categoria Custo Inventário
+item_store(1,'Potion of Healing','potions',10.0,50).
+item_store(2,'Wand of Fireball','wands',20.0,30).
+item_store(3,'Enchanted Spellbook','enchanted_books',30.0,20).
+item_store(4,'Crystal of Clairvoyance','crystals',15.0,40).
+item_store(5,'Amulet of Protection','amulets',25.0,25).
+item_store(6,'Standard Wand ','wands', 20.0,100).
+item_store(7,'Love Potion','potions',10.0,50).
+item_store(8,'Advanced Spellbook','enchanted Books',15,30).
+item_store(9,'Crystal of Magic Vision','crystals',30.0,20).
+item_store(10,'Flying Broomstick ','accessories',50.0,10).
+item_store(11,' Enchanted Scroll','scrolls',8.0,50).
+item_store(12,'Fairy Dust ','ingredients',5.0,100).
 
 
 % Descontos por categoria de item
@@ -75,7 +73,7 @@ shipping_cost('Coimbra', 5).
 shipping_cost('Faro', 15).
 shipping_cost('Viseu', 3).
 
-% Clientes
+% Clientes ID, Distrito, Anos de lealdade
 cliente_store(1,'Alice','Aveiro',3).
 cliente_store(2,'Beatriz','Braga',1).
 cliente_store(3,'Carlos','Coimbra',2).
@@ -85,4 +83,19 @@ cliente_store(6,'Francisca','Faro',3).
 cliente_store(7,'Guilhermina','Viseu',5).
 
 
+% histórico_de_compras(IDCliente,Data,ValorSemDescontos,DescontoCategoria,DescontoLealdade,CustoEnvio,Total)
+histórico_de_compras(1,'20/05/2024',50,5,0,5,50).
+histórico_de_compras(2,'21/05/2024',30,3,1,3,29).
+histórico_de_compras(3,'22/05/2024',40,4,0,4,40).
+histórico_de_compras(4,'23/05/2024',60,6,2.5,6,57.5).
+histórico_de_compras(5,'23/05/2024',25,2.5,0,2.5,25).
+histórico_de_compras(6,'25/05/2024',35,3.5,2,3.5,33).
+histórico_de_compras(7,'26/05/2024',75,7.5,0,7.5,75).
+histórico_de_compras(3,'27/05/2024',45,4.5,0,4.5,45).
+histórico_de_compras(4,'28/05/2024',55,5.5,10,5,44.5).
+histórico_de_compras(1,'28/05/2024',60,6,0,6,60).
 
+venda(1, 2, 2, 40.000000).
+venda(1, 5, 2, 50.000000).
+venda(1, 2, 4, 80.000000).
+venda(1, 5, 2, 50.000000).

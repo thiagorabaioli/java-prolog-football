@@ -10,11 +10,28 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
+import org.jpl7.Atom;
+import org.jpl7.Query;
+import org.jpl7.Term;
+
 import entities.Cart;
 import entities.Cliente;
 import entities.Item;
 
 public class FileReader {
+
+      private Query connectionQuery;
+
+    public FileReader(String filePath) {
+        // Estabelecer a conexão inicial ao consultar o arquivo Prolog
+        this.connectionQuery = new Query("consult", new Term[] { new Atom(filePath) });
+        this.connectionQuery.hasSolution(); // Executar a consulta inicial
+    }
+
+    public Query obterConsulta(String consulta) {
+        // Retorna uma nova instância de Query para uma consulta específica
+        return new Query(consulta);
+    }
 
     public static List<Cliente> loadClientesFromFile(String filePath) {
         List<Cliente> clientes = new ArrayList<>();
@@ -47,7 +64,7 @@ public class FileReader {
 
         return clientes;
     }
-     public static List<Item> loadItemsFromFile(String filePath) {
+    public static List<Item> loadItemsFromFile(String filePath) {
         List<Item> items = new ArrayList<>();
 
         try {
@@ -62,10 +79,10 @@ public class FileReader {
                     Integer id = Integer.parseInt(parts[1]);
                     String nome = parts[2];
                     String categoria = parts[3];
-                    Integer quantidade = Integer.parseInt(parts[4]);
-                    Double preco = Double.parseDouble(parts[5]);
+                    Double preco = Double.parseDouble(parts[4]);
+                    Integer quantidade = Integer.parseInt(parts[5]);
 
-                    Item item = new Item(id, nome, categoria, preco,quantidade);
+                    Item item = new Item(id, nome, categoria,preco, quantidade);
                     items.add(item);
                 }
             }
@@ -97,5 +114,5 @@ public class FileReader {
             e.printStackTrace();
         }
     }
-
 }
+
