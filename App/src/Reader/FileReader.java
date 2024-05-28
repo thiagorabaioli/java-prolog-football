@@ -20,6 +20,8 @@ import entities.Item;
 
 public class FileReader {
 
+    private static final String FILE_PATH = "src/DB/store.pl";
+
       private Query connectionQuery;
 
     public FileReader(String filePath) {
@@ -64,6 +66,51 @@ public class FileReader {
 
         return clientes;
     }
+
+     //Adicionar um cliente à base de dados
+
+      public static void adicionarClinete(){
+        Scanner scanner = new Scanner(System.in);
+            System.out.println("Digite o ID.");
+            int id = scanner.nextInt();
+            scanner.nextLine(); // Consumir a nova linha após o próximoInt()
+        
+            System.out.print("Digite o nome do cliente: ");
+            String nome = scanner.nextLine();
+        
+            System.out.print("Digite a localização do cliente: ");
+            String localizacao = scanner.nextLine();
+        
+            System.out.print("Digite o número de anos como cliente: ");
+            int anos = scanner.nextInt();
+        
+            // Adicionar um novo cliente
+            String consulta = "adicionar_cliente(" + id + ", '" + nome + "', '" + localizacao + "', " + anos + ")";
+            Query addCliente = new Query(consulta);
+
+            if (addCliente.hasSolution()) {
+                System.out.println("Novo cliente adicionado com sucesso.");
+            } else {
+                System.out.println("Falha ao adicionar novo cliente.");
+            }
+
+    }
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public static List<Item> loadItemsFromFile(String filePath) {
         List<Item> items = new ArrayList<>();
 

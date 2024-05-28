@@ -95,7 +95,4 @@ histórico_de_compras(3,'27/05/2024',45,4.5,0,4.5,45).
 histórico_de_compras(4,'28/05/2024',55,5.5,10,5,44.5).
 histórico_de_compras(1,'28/05/2024',60,6,0,6,60).
 
-venda(1, 2, 2, 40.000000).
-venda(1, 5, 2, 50.000000).
-venda(1, 2, 4, 80.000000).
-venda(1, 5, 2, 50.000000).
+cliente_store(25, 'Thiago', 'Loures', 5).
