@@ -1,19 +1,23 @@
 package entities;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Cart {
      private Integer id;
 	  private Cliente cliente;
-	  private ArrayList<Item> items = new ArrayList<Item>();
+	  private Map<Item, Integer> items;
 
-      public Cart() {}
+     
 	  
 	  public Cart(Integer id, Cliente cliente) {
 		super();
 		this.id = id;
 		this.cliente = cliente;
 	  }
+
+	  public Cart(){this.items = new HashMap<>();}
 
 	public Integer getId() {
 		return id;
@@ -30,14 +34,41 @@ public class Cart {
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
+	
 
-	public ArrayList<Item> getItems() {
+	public Map<Item, Integer> getItems() {
 		return items;
 	}
 
-	public void setItems(ArrayList<Item> items) {
+	public void setItems(Map<Item, Integer> items) {
 		this.items = items;
 	}
+
+	public void adicionarItem(Item item, int quantidade) {
+        if (items.containsKey(item)) {
+            items.put(item, items.get(item) + quantidade);
+        } else {
+            items.put(item, quantidade);
+        }
+    }
+
+    public void removerItem(Item item, int quantidade) {
+        if (items.containsKey(item)) {
+            int currentQuantity = items.get(item);
+            if (currentQuantity <= quantidade) {
+                items.remove(item);
+            } else {
+                items.put(item, currentQuantity - quantidade);
+            }
+        }
+    }
+
+    public double calcularTotal() {
+        return items.entrySet().stream()
+                .mapToDouble(entry -> entry.getKey().getPreco() * entry.getValue())
+                .sum();
+    }
+
 
 
 
@@ -70,9 +101,6 @@ public class Cart {
 	public String toString() {
 		return "Cart [id=" + id + ", cliente=" + cliente + ", items=" + items + "]";
 	}
-
-	
-	  
 
 
 	    // Métodos para adicionar, remover e buscar itens no carrinho

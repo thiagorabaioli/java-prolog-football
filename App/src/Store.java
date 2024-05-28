@@ -22,7 +22,7 @@ import java.util.Map;
 
 
 
-public class App {
+public class Store {
 
    
 

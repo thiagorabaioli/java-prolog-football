@@ -34,18 +34,18 @@ salvar_cliente(Id, Nome, Localizacao, Anos) :-
 
 
 % Item em inventário
-item(1, 'Potion of Healing', 'potions', 10.0, 50).
-item(2, 'Wand of Fireball', 'wands', 20.0, 30).
-item(3, 'Enchanted Spellbook', 'enchanted_books', 30.0, 20).
-item(4, 'Crystal of Clairvoyance', 'crystals', 15.0, 40).
-item(5, 'Amulet of Protection', 'amulets', 25.0, 25).
-item(6, 'Standard Wand ', 'wands', 20.0, 100).
-item(7, 'Love Potion', 'potions', 10.0, 50).
-item(8, 'Advanced Spellbook', 'enchanted Books', 15, 30).
-item(9, 'Crystal of Magic Vision', 'crystals', 30.0, 20).
-item(10, 'Flying Broomstick ', 'accessories', 50.0, 10).
-item(11, ' Enchanted Scroll', 'scrolls', 8.0, 50).
-item(12, 'Fairy Dust ', 'ingredients', 5.0, 100).
+item(1,'Potion of Healing','potions',10.0,50).
+item(2,'Wand of Fireball','wands',20.0,30).
+item(3,'Enchanted Spellbook','enchanted_books',30.0,20).
+item(4,'Crystal of Clairvoyance','crystals',15.0,40).
+item(5,'Amulet of Protection','amulets',25.0,25).
+item(6,'Standard Wand ','wands', 20.0,100).
+item(7,'Love Potion','potions',10.0,50).
+item(8,'Advanced Spellbook','enchanted Books',15,30).
+item(9,'Crystal of Magic Vision','crystals',30.0,20).
+item(10,'Flying Broomstick ','accessories',50.0,10).
+item(11,' Enchanted Scroll','scrolls',8.0,50).
+item(12,'Fairy Dust ','ingredients',5.0,100).
 
 
 % Descontos por categoria de item

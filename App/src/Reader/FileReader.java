@@ -1,12 +1,18 @@
 package Reader;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
+import entities.Cart;
 import entities.Cliente;
+import entities.Item;
 
 public class FileReader {
 
@@ -41,4 +47,55 @@ public class FileReader {
 
         return clientes;
     }
+     public static List<Item> loadItemsFromFile(String filePath) {
+        List<Item> items = new ArrayList<>();
+
+        try {
+            File file = new File(filePath);
+            Scanner scanner = new Scanner(file);
+
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine().trim();
+
+                if (line.startsWith("item_store")) {
+                    String[] parts = line.split("[(),']+");
+                    Integer id = Integer.parseInt(parts[1]);
+                    String nome = parts[2];
+                    String categoria = parts[3];
+                    Integer quantidade = Integer.parseInt(parts[4]);
+                    Double preco = Double.parseDouble(parts[5]);
+
+                    Item item = new Item(id, nome, categoria, preco,quantidade);
+                    items.add(item);
+                }
+            }
+            scanner.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("Erro: Arquivo não encontrado.");
+            e.printStackTrace();
+        }
+
+        return items;
+    }
+
+    public static void saveVendaToFile(String filePath, Cliente cliente, Cart carrinho) {
+        try {
+            File file = new File(filePath);
+            FileWriter writer = new FileWriter(file, true);
+            BufferedWriter bufferedWriter = new BufferedWriter(writer);
+
+            for (Map.Entry<Item, Integer> entry : carrinho.getItems().entrySet()) {
+                Item item = entry.getKey();
+                Integer quantidade = entry.getValue();
+
+                bufferedWriter.write(String.format("venda(%d, %d, %d, %f).\n",
+                        cliente.getId(), item.getId(), quantidade, item.getPreco() * quantidade));
+            }
+            bufferedWriter.close();
+        } catch (IOException e) {
+            System.out.println("Erro ao salvar a venda: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
 }
