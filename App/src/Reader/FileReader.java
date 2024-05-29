@@ -93,11 +93,12 @@ public class FileReader {
             } else {
                 System.out.println("Falha ao adicionar novo cliente.");
             }
-            scanner.close();
 
     }
 
   
+
+
     public static List<Item> loadItemsFromFile() {
         List<Item> items = new ArrayList<>();
 
@@ -129,9 +130,9 @@ public class FileReader {
         return items;
     }
 
-    public static void saveVendaToFile(Cliente cliente, Cart carrinho) {
+    public static void saveVendaToFile(String filePath, Cliente cliente, Cart carrinho) {
         try {
-            File file = new File(FILE_PATH);
+            File file = new File(filePath);
             FileWriter writer = new FileWriter(file, true);
             BufferedWriter bufferedWriter = new BufferedWriter(writer);
 

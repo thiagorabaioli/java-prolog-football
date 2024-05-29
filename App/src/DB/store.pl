@@ -104,3 +104,11 @@ venda(6, 5, 2, 50.000000).
 venda(1, 1, 5, 50.000000).
 venda(5, 5, 8, 200.000000).
 venda(5, 5, 5, 125.000000).
+venda(5, 5, 5, 125.000000).
+cliente_store(25,'Tiago','Lisboa',5).
+venda(5, 12, 2, 10.000000).
+venda(5, 5, 5, 125.000000).
+venda(5, 5, 5, 125.000000).
+cliente_store(67,'ThiagoRRRR','Lisboa',5).
+cliente_store(25,'djiodjqoiwd','AAAAAAAAAA',58).
+venda(3, 2, 5, 100.000000).

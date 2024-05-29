@@ -13,15 +13,19 @@ import java.lang.Integer;
 
 
 
+
 public class Store {
-   
+  
 
     public static void main(String[] args) throws Exception {
+
+       // menuPrincipal(true);
 
         
         Scanner scanner = new Scanner(System.in);
         try {
-            
+            String FILE_PATH = "/home/ubuntu/LP/efolioB/java-prolog-football/App/src/DB/store.pl";
+
             // Carregando clientes e itens do arquivo Prolog
             List<Cliente> cli = FileReader.loadClientesFromFile();
             List<Item> items = FileReader.loadItemsFromFile();
@@ -54,7 +58,6 @@ public class Store {
                     System.out.println("Entrada inválida. Por favor, digite um número.");
                 }
             }
-        
 
             Cliente clienteSelecionado = cli.get(clienteIndex);
             Cart carrinho = new Cart();
@@ -119,7 +122,7 @@ public class Store {
             System.out.println(carrinho);
 
             // Salva a venda no arquivo
-            FileReader.saveVendaToFile(clienteSelecionado, carrinho);
+            FileReader.saveVendaToFile(FILE_PATH, clienteSelecionado, carrinho);
 
         } catch (Exception e) {
             e.printStackTrace();
