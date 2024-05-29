@@ -19,7 +19,7 @@ public class Store {
 
     public static void main(String[] args) throws Exception {
 
-       // menuPrincipal(true);
+        menuPrincipal(true);
 
         
         Scanner scanner = new Scanner(System.in);
