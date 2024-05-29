@@ -24,9 +24,9 @@ public class FileReader {
 
       private Query connectionQuery;
 
-    public FileReader(String filePath) {
+    public FileReader() {
         // Estabelecer a conexão inicial ao consultar o arquivo Prolog
-        this.connectionQuery = new Query("consult", new Term[] { new Atom(filePath) });
+        this.connectionQuery = new Query("consult", new Term[] { new Atom(FILE_PATH) });
         this.connectionQuery.hasSolution(); // Executar a consulta inicial
     }
 
@@ -35,11 +35,11 @@ public class FileReader {
         return new Query(consulta);
     }
 
-    public static List<Cliente> loadClientesFromFile(String filePath) {
+    public static List<Cliente> loadClientesFromFile() {
         List<Cliente> clientes = new ArrayList<>();
 
         try {
-            File file = new File(filePath);
+            File file = new File(FILE_PATH);
             Scanner scanner = new Scanner(file);
 
             while (scanner.hasNextLine()) {
@@ -93,17 +93,16 @@ public class FileReader {
             } else {
                 System.out.println("Falha ao adicionar novo cliente.");
             }
+            scanner.close();
 
     }
 
   
-
-
-    public static List<Item> loadItemsFromFile(String filePath) {
+    public static List<Item> loadItemsFromFile() {
         List<Item> items = new ArrayList<>();
 
         try {
-            File file = new File(filePath);
+            File file = new File(FILE_PATH);
             Scanner scanner = new Scanner(file);
 
             while (scanner.hasNextLine()) {
@@ -130,9 +129,9 @@ public class FileReader {
         return items;
     }
 
-    public static void saveVendaToFile(String filePath, Cliente cliente, Cart carrinho) {
+    public static void saveVendaToFile(Cliente cliente, Cart carrinho) {
         try {
-            File file = new File(filePath);
+            File file = new File(FILE_PATH);
             FileWriter writer = new FileWriter(file, true);
             BufferedWriter bufferedWriter = new BufferedWriter(writer);
 

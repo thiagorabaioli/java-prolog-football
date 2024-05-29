@@ -16,54 +16,53 @@ adicionar_cliente(Id, Nome, Localizacao, Anos) :-
 % Regra para salvar um novo cliente no arquivo store.pl
 salvar_cliente(Id, Nome, Localizacao, Anos) :-
     open('/home/ubuntu/LP/efolioB/java-prolog-football/App/src/DB/store.pl', append, Stream),
-    write(Stream,'cliente_store('),
-    write(Stream,Id),
-    write(Stream,',\''),
-    write(Stream,Nome),
-    write(Stream,'\',\''),
-    write(Stream,Localizacao),
-    write(Stream,'\','),
-    write(Stream,Anos),
-    write(Stream,').\n'),
+    write(Stream, 'cliente_store('),
+    write(Stream, Id),
+    write(Stream, ', \''),
+    write(Stream, Nome),
+    write(Stream, '\', \''),
+    write(Stream, Localizacao),
+    write(Stream, '\', '),
+    write(Stream, Anos),
+    write(Stream, ').\n'),
     close(Stream).
 
 
 
 
 
-%ItememinventárioIDitemNomeCategoriaCustoInventário
+% Item em inventário IDitem Nome Categoria Custo Inventário
 item_store(1,'Potion of Healing','potions',10.0,50).
 item_store(2,'Wand of Fireball','wands',20.0,30).
 item_store(3,'Enchanted Spellbook','enchanted_books',30.0,20).
 item_store(4,'Crystal of Clairvoyance','crystals',15.0,40).
 item_store(5,'Amulet of Protection','amulets',25.0,25).
-item_store(6,'Standard Wand','wands',20.0,100).
+item_store(6,'Standard Wand ','wands', 20.0,100).
 item_store(7,'Love Potion','potions',10.0,50).
-item_store(8,'Advanced Spellbook','enchanted_books',15,30).
+item_store(8,'Advanced Spellbook','enchanted Books',15,30).
 item_store(9,'Crystal of Magic Vision','crystals',30.0,20).
-item_store(10,'Flying Broomstick','accessories',50.0,10).
-item_store(11,'Enchanted Scroll','scrolls',8.0,50).
-item_store(12,'Fairy Dust','ingredients',5.0,100).
-
+item_store(10,'Flying Broomstick ','accessories',50.0,10).
+item_store(11,' Enchanted Scroll','scrolls',8.0,50).
+item_store(12,'Fairy Dust ','ingredients',5.0,100).
 
 
 % Descontos por categoria de item
-discount('potions',0.03).
-discount('wands',0.2).
-discount('enchanted_books',0.3).
-discount('crystals',0.15).
-discount('amulets',0.25).
-discount('accessories',0).
-discount('scrolls',0.2).
-discount('ingredients',0.05).
+discount('potions', 0.03).
+discount('wands', 0.2).
+discount('enchanted_books', 0.3).
+discount('crystals', 0.15).
+discount('amulets', 0.25).
+discount('accessories', 0).
+discount('scrolls', 0.2).
+discount('ingredients', 0.05).
 
 % Desconto de lealdade por ano
-loyalty_discount(1,0.05).
-loyalty_discount(2,0.1).
-loyalty_discount(3,0.15).
-loyalty_discount(4,0.2).
-loyalty_discount(5,0.25).
-loyalty_discount(6,0.3).
+loyalty_discount(1, 0.05).
+loyalty_discount(2, 0.1).
+loyalty_discount(3, 0.15).
+loyalty_discount(4, 0.2).
+loyalty_discount(5, 0.25).
+loyalty_discount(6, 0.3).
 
 % Custos de envio por distrito
 shipping_cost('Aveiro', 5.0).
@@ -82,9 +81,6 @@ cliente_store(4,'Diogo','Lisboa',4).
 cliente_store(5,'Eva','Porto',1).
 cliente_store(6,'Francisca','Faro',3).
 cliente_store(7,'Guilhermina','Viseu',5).
-cliente_store(8,'Joana','Viseu',5).
-cliente_store(9,'Azul','Viseu',5).
-cliente_store(10,'Teste','Viseu',5).
 
 
 % histórico_de_compras(IDCliente,Data,ValorSemDescontos,DescontoCategoria,DescontoLealdade,CustoEnvio,Total)
@@ -99,8 +95,6 @@ histórico_de_compras(3,'27/05/2024',45,4.5,0,4.5,45).
 histórico_de_compras(4,'28/05/2024',55,5.5,10,5,44.5).
 histórico_de_compras(1,'28/05/2024',60,6,0,6,60).
 
-venda(1, 12, 5, 25.000000).
-venda(6, 5, 2, 50.000000).
-venda(1, 1, 5, 50.000000).
-venda(5, 5, 8, 200.000000).
-venda(5, 5, 5, 125.000000).
+cliente_store(25, 'Thiago', 'Loures', 5).
+cliente_store(27, 'ThiagoRRRR', 'Loures', 7).
+cliente_store(58, 'Rafael', 'Loures', 9).

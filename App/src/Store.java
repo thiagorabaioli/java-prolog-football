@@ -9,91 +9,127 @@ import entities.Cart;
 import entities.Cliente;
 import entities.Item;
 import java.util.Map;
+import java.lang.Integer;
 
 
 
 public class Store {
-
+   
 
     public static void main(String[] args) throws Exception {
 
-          menuPrincipal(true);
-
-        List<Cliente> cli = FileReader.loadClientesFromFile("/home/ubuntu/LP/efolioB/java-prolog-football/App/src/DB/store.pl");
-        List<Item> items = FileReader.loadItemsFromFile("/home/ubuntu/LP/efolioB/java-prolog-football/App/src/DB/store.pl");
-
-        System.out.println(cli);
-
+        
         Scanner scanner = new Scanner(System.in);
+        try {
+            
+            // Carregando clientes e itens do arquivo Prolog
+            List<Cliente> cli = FileReader.loadClientesFromFile();
+            List<Item> items = FileReader.loadItemsFromFile();
 
-        // Seleciona o cliente
-        System.out.println("Selecione o cliente para a venda:");
-        for (int i = 0; i < cli.size(); i++) {
-            System.out.println((i + 1) + ". " + cli.get(i));
-        }
-
-        int clienteIndex = -1;
-        while (clienteIndex < 0 || clienteIndex >= cli.size()) {
-            System.out.print("Digite o número do cliente (1-" + cli.size() + "): ");
-            clienteIndex = scanner.nextInt() - 1;
-
-            if (clienteIndex < 0 || clienteIndex >= cli.size()) {
-                System.out.println("Índice inválido. Por favor, tente novamente.");
-            }
-        }
-        Cliente clienteSelecionado = cli.get(clienteIndex);
-
-        // Cria o carrinho e associa o cliente a ele
-        Cart carrinho = new Cart();
-        carrinho.setCliente(clienteSelecionado);
-
-        // Seleciona os itens para o carrinho
-        while (true) {
-            System.out.println("Selecione o item para adicionar ao carrinho (ou 0 para finalizar):");
-            for (int i = 0; i < items.size(); i++) {
-                System.out.println((i + 1) + ". " + items.get(i));
+            // Verifica se há clientes e itens carregados
+            if (cli.isEmpty() || items.isEmpty()) {
+                System.out.println("Não há clientes ou itens disponíveis. Encerrando o programa.");
+                return;
             }
 
-            int itemIndex = -1;
-            while (itemIndex < 0 || itemIndex >= items.size()) {
-                System.out.print("Digite o número do item (1-" + items.size() + ", ou 0 para finalizar): ");
-                itemIndex = scanner.nextInt() - 1;
+            // Seleciona o cliente
+            System.out.println("Selecione o cliente para a venda:");
+            for (int i = 0; i < cli.size(); i++) {
+                System.out.println((i + 1) + ". " + cli.get(i));
+            }
+
+            int clienteIndex = -1;
+            boolean inputValido = false;
+            while (!inputValido) {
+                System.out.print("Digite o número do cliente (1-" + cli.size() + "): ");
+                String input = scanner.nextLine();
+                try {
+                    clienteIndex = Integer.parseInt(input) - 1;
+                    if (clienteIndex >= 0 && clienteIndex < cli.size()) {
+                        inputValido = true;
+                    } else {
+                        System.out.println("Índice inválido. Por favor, tente novamente.");
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("Entrada inválida. Por favor, digite um número.");
+                }
+            }
+        
+
+            Cliente clienteSelecionado = cli.get(clienteIndex);
+            Cart carrinho = new Cart();
+            carrinho.setCliente(clienteSelecionado);
+
+            // Seleciona os itens para o carrinho
+            while (true) {
+                System.out.println("Selecione o item para adicionar ao carrinho (ou 0 para finalizar):");
+                for (int i = 0; i < items.size(); i++) {
+                    System.out.println((i + 1) + ". " + items.get(i));
+                }
+
+                int itemIndex = -1;
+                inputValido = false;
+                while (!inputValido) {
+                    System.out.print("Digite o número do item (1-" + items.size() + ", ou 0 para finalizar): ");
+                    String input = scanner.nextLine();
+                    try {
+                        itemIndex = Integer.parseInt(input) - 1;
+                        if (itemIndex >= -1 && itemIndex < items.size()) {
+                            inputValido = true;
+                        } else {
+                            System.out.println("Índice inválido. Por favor, tente novamente.");
+                        }
+                    } catch (NumberFormatException e) {
+                        System.out.println("Entrada inválida. Por favor, digite um número.");
+                    }
+                }
 
                 if (itemIndex == -1) {
                     break;
                 }
 
-                if (itemIndex < 0 || itemIndex >= items.size()) {
-                    System.out.println("Índice inválido. Por favor, tente novamente.");
+                System.out.print("Quantidade: ");
+                int quantidade = -1;
+                inputValido = false;
+                while (!inputValido) {
+                    String input = scanner.nextLine();
+                    try {
+                        quantidade = Integer.parseInt(input);
+                        if (quantidade > 0) {
+                            inputValido = true;
+                        } else {
+                            System.out.println("Quantidade inválida. Por favor, digite um número maior que zero.");
+                        }
+                    } catch (NumberFormatException e) {
+                        System.out.println("Entrada inválida. Por favor, digite um número inteiro maior que zero.");
+                    }
+                }
+
+                Item itemSelecionado = items.get(itemIndex);
+                if (quantidade <= itemSelecionado.getQuantidade()) {
+                    carrinho.adicionarItem(itemSelecionado, quantidade);
+                    itemSelecionado.setQuantidade(itemSelecionado.getQuantidade() - quantidade);
+                } else {
+                    System.out.println("Quantidade indisponível em estoque.");
                 }
             }
 
-            if (itemIndex == -1) {
-                break;
-            }
+            // Exibe o carrinho final
+            System.out.println("Carrinho final:");
+            System.out.println(carrinho);
 
-            System.out.print("Quantidade: ");
-            int quantidade = scanner.nextInt();
+            // Salva a venda no arquivo
+            FileReader.saveVendaToFile(clienteSelecionado, carrinho);
 
-            Item itemSelecionado = items.get(itemIndex);
-            if (quantidade <= itemSelecionado.getQuantidade()) {
-                carrinho.adicionarItem(itemSelecionado, quantidade);
-                itemSelecionado.setQuantidade(itemSelecionado.getQuantidade() - quantidade);
-            } else {
-                System.out.println("Quantidade indisponível em estoque.");
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (scanner != null) {
+                scanner.close();
             }
         }
-
-        // Exibe o carrinho final
-        System.out.println("Carrinho final:");
-        System.out.println(carrinho);
-
-        // Salva a venda no arquivo
-        FileReader.saveVendaToFile("src/DB/store.pl", clienteSelecionado, carrinho);
-
-        scanner.close();
-       
     }
+
     
 
     private static void menuPrincipal(boolean b) {
@@ -113,7 +149,7 @@ public class Store {
             switch (opcao) {
                 case 1:
                 // Instanciar PrologIntegration com o caminho do arquivo store.pl
-              FileReader fileReader = new FileReader("/home/ubuntu/LP/efolioB/java-prolog-football/App/src/DB/store.pl");
+              FileReader fileReader = new FileReader();
 
                 // Exemplo de consulta para obter todos os clientes
                 Query consultaClientes = fileReader.obterConsulta("todos_clientes(Clientes)");
